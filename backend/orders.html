@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kitchen Orders Portal — Food Verse Restaurant Backend</title>
+  <meta name="description" content="Live Restaurant Order Management Dashboard for Cafe by the Valley and Atmosphere Cafe on Food Verse." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'" />
+  <script>try{if(localStorage.getItem('foodverse_theme_v1')==='dark')document.documentElement.classList.add('dark-mode');}catch(e){}</script>
+  <style>html.dark-mode,html.dark-mode body{background:#000000;color:#ffffff;}</style>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='14' fill='%231d4e89'/><text x='16' y='21' text-anchor='middle' font-size='14' font-family='serif' fill='white'>FV</text></svg>" />
+  <link rel="stylesheet" href="../frontend/assets/css/style.css" />
+</head>
+<body class="is-fv-loading">
+  <!-- Plain White ASCII Burger Runner Preloader -->
+  <div class="fv-loader" id="fv-loader" role="status" aria-live="polite" aria-label="Loading Food Verse">
+    <pre class="fv-runner-pre" id="fv-runner-pre" aria-hidden="true"></pre>
+  </div>
+
+  <!-- Shared Header -->
+  <div id="fv-header"></div>
+
+  <main>
+    <!-- 1. DASHBOARD HEADER & KPI LEDGER -->
+    <section class="orders-hero">
+      <div class="container">
+        <div class="orders-hero__top">
+          <div>
+            <span class="eyebrow">Restaurant Operations Backend &middot; SDG 09 Unified Dispatch</span>
+            <h1 class="section-header__title" style="margin-top:10px; margin-bottom:10px;">
+              Kitchen Orders Portal
+            </h1>
+            <p style="font-size:0.95rem; color:var(--ink-muted); max-width:600px;">
+              Monitor incoming orders across Cafe by the Valley and Atmosphere Cafe, filter by kitchen or delivery mode, track 2% hostel maintenance fees, and advance ticket status in real time.
+            </p>
+          </div>
+
+          <div style="display:flex; flex-direction:column; align-items:flex-end; gap:12px;">
+            <span class="orders-sync-badge" id="orders-sync-badge">
+              <span class="orders-sync-dot"></span>
+              <span id="orders-sync-text">Cross-Tab Live Sync Active</span>
+            </span>
+            <div class="orders-toolbar-actions">
+              <button type="button" class="btn-editorial btn-editorial--outline btn-editorial--pill" id="fv-seed-orders">Load Sample Orders</button>
+              <button type="button" class="btn-editorial btn-editorial--outline btn-editorial--pill" id="fv-export-csv">Export CSV</button>
+              <button type="button" class="btn-editorial btn-editorial--outline btn-editorial--pill" id="fv-clear-orders">Clear Queue</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="orders-kpi-row">
+          <div class="orders-kpi">
+            <span class="orders-kpi__k">Received Orders</span>
+            <span class="orders-kpi__v" id="kpi-total-orders">0</span>
+          </div>
+          <div class="orders-kpi">
+            <span class="orders-kpi__k">Active Kitchen Queue</span>
+            <span class="orders-kpi__v" id="kpi-active-orders">0</span>
+          </div>
+          <div class="orders-kpi">
+            <span class="orders-kpi__k">Hostel Maintenance (2%)</span>
+            <span class="orders-kpi__v" id="kpi-hostel-fee">₹0</span>
+          </div>
+          <div class="orders-kpi">
+            <span class="orders-kpi__k">Gross Order Volume</span>
+            <span class="orders-kpi__v" id="kpi-gross-sales">₹0</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. FILTERS & ORDER TICKET QUEUE -->
+    <section class="orders-board">
+      <div class="container">
+        <div class="orders-filters">
+          <div class="orders-filters__row">
+            <!-- Restaurant Selector Tabs -->
+            <div class="orders-tabs-group" id="orders-kitchen-tabs" role="tablist" aria-label="Filter by Restaurant">
+              <button type="button" class="filter-pill is-active" data-kitchen-filter="all">All Kitchens (0)</button>
+              <button type="button" class="filter-pill" data-kitchen-filter="cafe-by-the-valley">Cafe by the Valley (0)</button>
+              <button type="button" class="filter-pill" data-kitchen-filter="atmosphere-cafe">Atmosphere Cafe (0)</button>
+            </div>
+
+            <!-- Search & Delivery Mode Filter -->
+            <div style="display:flex; flex-wrap:wrap; gap:10px; align-items:center;">
+              <select class="orders-select" id="orders-mode-filter" aria-label="Filter by Delivery Mode">
+                <option value="all">All Delivery Modes</option>
+                <option value="hostel">Delivery to Hostels (+2%)</option>
+                <option value="delivery">Campus Drop</option>
+                <option value="pickup">Counter Pickup</option>
+              </select>
+              <div class="search-box" style="min-width:250px;">
+                <span class="search-box__icon">&#9906;</span>
+                <input type="search" id="orders-search-input" placeholder="Search FV token, student, dish..." aria-label="Search received orders" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Workflow Status Filters -->
+          <div class="orders-tabs-group" id="orders-status-tabs" role="tablist" aria-label="Filter by Status">
+            <button type="button" class="filter-pill is-active" data-status-filter="all">All Statuses</button>
+            <button type="button" class="filter-pill" data-status-filter="Pending">Pending</button>
+            <button type="button" class="filter-pill" data-status-filter="Preparing">Preparing</button>
+            <button type="button" class="filter-pill" data-status-filter="Ready">Ready</button>
+            <button type="button" class="filter-pill" data-status-filter="Completed">Completed</button>
+            <button type="button" class="filter-pill" data-status-filter="Cancelled">Cancelled</button>
+          </div>
+        </div>
+
+        <div id="orders-grid-mount"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Shared Footer -->
+  <div id="fv-footer"></div>
+
+  <script src="../frontend/assets/vendor/gsap.min.js"></script>
+  <script src="../frontend/assets/vendor/ScrollTrigger.min.js"></script>
+  <script src="../frontend/assets/js/foodverse-core.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      FoodVerse.renderSharedChrome('orders');
+
+      let kitchenFilter = 'all';
+      let statusFilter = 'all';
+      let modeFilter = 'all';
+      let searchTerm = '';
+      let cachedOrders = FoodVerse.loadOrders();
+
+      const STATUS_FLOW = {
+        Pending: { next: 'Preparing', label: 'Start Preparing' },
+        Preparing: { next: 'Ready', label: 'Mark Ready' },
+        Ready: { next: 'Completed', label: 'Complete Order' }
+      };
+
+      function formatCurrency(val) {
+        const num = Math.round((Number(val) || 0) * 100) / 100;
+        return Number.isInteger(num) ? String(num) : num.toFixed(2);
+      }
+
+      function escapeText(str) {
+        return String(str == null ? '' : str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
+
+      function modeLabel(mode) {
+        if (mode === 'hostel') return 'Delivery to Hostels (+2%)';
+        if (mode === 'delivery') return 'Campus Drop';
+        return 'Counter Pickup';
+      }
+
+      function formatTime(iso) {
+        try {
+          const d = new Date(iso);
+          return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) + ' · ' + d.toLocaleDateString([], { month: 'short', day: 'numeric' });
+        } catch (e) {
+          return 'Just now';
+        }
+      }
+
+      function orderMatchesKitchen(order, kId) {
+        if (kId === 'all') return true;
+        if (Array.isArray(order.kitchenIds) && order.kitchenIds.includes(kId)) return true;
+        if (Array.isArray(order.items) && order.items.some(function (it) { return it.restaurantId === kId; })) return true;
+        const restName = FoodVerse.RESTAURANTS[kId] ? FoodVerse.RESTAURANTS[kId].name : '';
+        return Array.isArray(order.kitchens) && order.kitchens.includes(restName);
+      }
+
+      function renderBoard() {
+        const allOrders = cachedOrders || [];
+        const valleyCount = allOrders.filter(function (o) { return orderMatchesKitchen(o, 'cafe-by-the-valley'); }).length;
+        const atmoCount = allOrders.filter(function (o) { return orderMatchesKitchen(o, 'atmosphere-cafe'); }).length;
+
+        const tabAll = document.querySelector('[data-kitchen-filter="all"]');
+        const tabVal = document.querySelector('[data-kitchen-filter="cafe-by-the-valley"]');
+        const tabAtm = document.querySelector('[data-kitchen-filter="atmosphere-cafe"]');
+        if (tabAll) tabAll.textContent = 'All Kitchens (' + allOrders.length + ')';
+        if (tabVal) tabVal.textContent = 'Cafe by the Valley (' + valleyCount + ')';
+        if (tabAtm) tabAtm.textContent = 'Atmosphere Cafe (' + atmoCount + ')';
+
+        // Filtered orders
+        const filtered = allOrders.filter(function (o) {
+          if (!orderMatchesKitchen(o, kitchenFilter)) return false;
+          const st = o.status || 'Pending';
+          if (statusFilter !== 'all' && st !== statusFilter) return false;
+          if (modeFilter !== 'all' && o.mode !== modeFilter) return false;
+          if (searchTerm) {
+            const q = searchTerm.toLowerCase();
+            const itemsBlob = Array.isArray(o.items)
+              ? o.items.map(function (i) { return i.name + ' ' + (i.variantLabel || ''); }).join(' ')
+              : '';
+            const hay = (o.token + ' ' + o.studentName + ' ' + o.rollNo + ' ' + o.location + ' ' + (o.kitchens || []).join(' ') + ' ' + itemsBlob).toLowerCase();
+            if (!hay.includes(q)) return false;
+          }
+          return true;
+        });
+
+        function getScopedAmounts(order) {
+          if (kitchenFilter === 'all') {
+            return {
+              fee: Number(order.commission) || 0,
+              gross: Number(order.total) || 0
+            };
+          }
+          let shareSub = 0;
+          if (order.kitchenTotals && order.kitchenTotals[kitchenFilter] != null) {
+            shareSub = Number(order.kitchenTotals[kitchenFilter]) || 0;
+          } else if (Array.isArray(order.items)) {
+            shareSub = order.items.reduce(function (acc, it) {
+              return it.restaurantId === kitchenFilter ? acc + (Number(it.lineTotal) || (Number(it.price) * Number(it.qty)) || 0) : acc;
+            }, 0);
+          }
+          const shareFee = order.mode === 'hostel' && (Number(order.commission) || 0) > 0
+            ? Math.round(shareSub * 0.02 * 100) / 100
+            : 0;
+          return {
+            fee: shareFee,
+            gross: Math.round((shareSub + shareFee) * 100) / 100
+          };
+        }
+
+        // Compute KPI ledger over kitchen-scoped view
+        const scoped = allOrders.filter(function (o) { return orderMatchesKitchen(o, kitchenFilter); });
+        const activeCount = scoped.filter(function (o) {
+          const st = o.status || 'Pending';
+          return st === 'Pending' || st === 'Preparing' || st === 'Ready';
+        }).length;
+        const hostelFeeSum = scoped.reduce(function (sum, o) {
+          return sum + getScopedAmounts(o).fee;
+        }, 0);
+        const grossSum = scoped.reduce(function (sum, o) {
+          return sum + getScopedAmounts(o).gross;
+        }, 0);
+
+        document.getElementById('kpi-total-orders').textContent = String(scoped.length);
+        document.getElementById('kpi-active-orders').textContent = String(activeCount);
+        document.getElementById('kpi-hostel-fee').textContent = '₹' + formatCurrency(hostelFeeSum);
+        document.getElementById('kpi-gross-sales').textContent = '₹' + formatCurrency(grossSum);
+
+        const mount = document.getElementById('orders-grid-mount');
+        if (!filtered.length) {
+          mount.innerHTML = `
+            <div class="orders-empty">
+              <h3 class="serif-title" style="font-size:2rem; margin-bottom:8px;">No Received Orders Yet</h3>
+              <p style="font-size:0.9rem; color:var(--ink-muted); max-width:460px; margin:0 auto 20px;">
+                Place an order from either dining house menu to watch it appear here live, or load sample orders to preview kitchen dispatch workflows.
+              </p>
+              <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center;">
+                <button type="button" class="btn-editorial btn-editorial--pill" id="fv-empty-seed">Load Sample Orders</button>
+                <a href="../frontend/restaurants/cafe-by-the-valley.html" class="btn-editorial btn-editorial--outline btn-editorial--pill">Order from Menu &rarr;</a>
+              </div>
+            </div>
+          `;
+          const emptySeed = document.getElementById('fv-empty-seed');
+          if (emptySeed) emptySeed.addEventListener('click', seedSampleOrders);
+          return;
+        }
+
+        mount.innerHTML = '<div class="orders-grid">' + filtered.map(function (order) {
+          const status = order.status || 'Pending';
+          const statusClass = 'order-status-pill--' + status.toLowerCase();
+          const flow = STATUS_FLOW[status];
+
+          // Scope line items if filtered to a single restaurant
+          const rawItems = Array.isArray(order.items) ? order.items : [];
+          const displayItems = kitchenFilter === 'all'
+            ? rawItems
+            : rawItems.filter(function (it) { return it.restaurantId === kitchenFilter; });
+
+          const itemsHtml = displayItems.length > 0
+            ? displayItems.map(function (it) {
+                const label = it.variantLabel ? escapeText(it.name) + ' (' + escapeText(it.variantLabel) + ')' : escapeText(it.name);
+                return `
+                  <div class="order-line">
+                    <span>
+                      <strong>${it.qty}&times;</strong> ${label}
+                      ${kitchenFilter === 'all' ? `<span class="order-line__kitchen">${escapeText(it.restaurantName || it.restaurantId)}</span>` : ''}
+                    </span>
+                    <strong>₹${formatCurrency(it.lineTotal != null ? it.lineTotal : (it.price * it.qty))}</strong>
+                  </div>
+                `;
+              }).join('')
+            : `<div class="order-line"><span style="color:var(--ink-muted);">Order routed to ${escapeText((order.kitchens || []).join(', '))}</span><strong>₹${escapeText(order.total)}</strong></div>`;
+
+          const commissionVal = Number(order.commission) || 0;
+          const kitchenScopedSubtotal = kitchenFilter !== 'all' && order.kitchenTotals && order.kitchenTotals[kitchenFilter] != null
+            ? order.kitchenTotals[kitchenFilter]
+            : null;
+
+          const totalDisplay = kitchenScopedSubtotal != null
+            ? '₹' + formatCurrency(kitchenScopedSubtotal) + ' <span style="font-size:0.75rem; font-weight:400; color:var(--ink-subtle); font-family:var(--font-sans);">kitchen share</span>'
+            : '₹' + escapeText(order.total);
+
+          const feeNote = commissionVal > 0
+            ? 'Includes ₹' + formatCurrency(commissionVal) + ' (2% hostel maintenance)'
+            : 'Subtotal ₹' + escapeText(order.subtotal != null ? order.subtotal : order.total) + ' · Zero commission';
+
+          return `
+            <article class="order-ticket" data-order-token="${escapeText(order.token)}">
+              <div class="order-ticket__head">
+                <div>
+                  <div class="order-ticket__token">${escapeText(order.token)}</div>
+                  <div class="order-ticket__time">${formatTime(order.createdAt)} · ${escapeText((order.kitchens || []).join(' + '))}</div>
+                </div>
+                <span class="order-status-pill ${statusClass}">${escapeText(status)}</span>
+              </div>
+
+              <div class="order-ticket__meta">
+                <div>
+                  <span class="order-meta-item__k">Student</span>
+                  <span class="order-meta-item__v">${escapeText(order.studentName)} (${escapeText(order.rollNo)})</span>
+                </div>
+                <div>
+                  <span class="order-meta-item__k">Delivery Mode</span>
+                  <span class="order-meta-item__v">${escapeText(modeLabel(order.mode))}</span>
+                </div>
+                <div>
+                  <span class="order-meta-item__k">Destination / Counter</span>
+                  <span class="order-meta-item__v">${escapeText(order.location)}</span>
+                </div>
+                <div>
+                  <span class="order-meta-item__k">Requested Window</span>
+                  <span class="order-meta-item__v">${escapeText(order.slot)}</span>
+                </div>
+              </div>
+
+              <div class="order-ticket__items">
+                ${itemsHtml}
+              </div>
+
+              <div class="order-ticket__foot">
+                <div>
+                  <div class="order-ticket__total">${totalDisplay}</div>
+                  <span class="order-ticket__fee-note">${feeNote}</span>
+                </div>
+                <div class="order-actions-row">
+                  ${flow ? `<button type="button" class="order-action-btn order-action-btn--primary" data-set-status="${flow.next}" data-token="${escapeText(order.token)}">${flow.label}</button>` : ''}
+                  ${status !== 'Completed' && status !== 'Cancelled' ? `<button type="button" class="order-action-btn" data-set-status="Cancelled" data-token="${escapeText(order.token)}">Cancel</button>` : ''}
+                </div>
+              </div>
+            </article>
+          `;
+        }).join('') + '</div>';
+
+        mount.querySelectorAll('[data-set-status]').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            const token = btn.getAttribute('data-token');
+            const nextStatus = btn.getAttribute('data-set-status');
+            cachedOrders = FoodVerse.updateOrderStatus(token, nextStatus);
+            renderBoard();
+          });
+        });
+      }
+
+      function seedSampleOrders() {
+        const now = Date.now();
+        const samples = [
+          {
+            token: 'FV-4812',
+            studentName: 'Aarav Mehta',
+            rollNo: '24CS108',
+            mode: 'hostel',
+            location: 'Boys — Club View',
+            slot: 'Night Hostel Drop (8:00 PM – 11:00 PM)',
+            kitchens: ['Cafe by the Valley'],
+            kitchenIds: ['cafe-by-the-valley'],
+            kitchenTotals: { 'cafe-by-the-valley': 280 },
+            items: [
+              { id: 'v-periperi-grilled', name: 'Peri Peri Grilled (Paneer / Chicken)', variantLabel: 'Paneer', qty: 1, price: 140, lineTotal: 140, restaurantId: 'cafe-by-the-valley', restaurantName: 'Cafe by the Valley' },
+              { id: 'v-cold-coffee', name: 'Classic Cold Coffee', variantLabel: '', qty: 1, price: 140, lineTotal: 140, restaurantId: 'cafe-by-the-valley', restaurantName: 'Cafe by the Valley' }
+            ],
+            status: 'Preparing',
+            subtotal: 280,
+            commission: '5.60',
+            total: '285.60',
+            createdAt: new Date(now - 6 * 60000).toISOString()
+          },
+          {
+            token: 'FV-4819',
+            studentName: 'Diya Sharma',
+            rollNo: '24BBA09',
+            mode: 'hostel',
+            location: 'Girls — Celebrations',
+            slot: 'Evening Drop (4:00 PM – 7:30 PM)',
+            kitchens: ['Atmosphere Cafe'],
+            kitchenIds: ['atmosphere-cafe'],
+            kitchenTotals: { 'atmosphere-cafe': 208 },
+            items: [
+              { id: 'a-paneer-cheese-paratha', name: 'Paneer Cheese Paratha', variantLabel: '', qty: 1, price: 139, lineTotal: 139, restaurantId: 'atmosphere-cafe', restaurantName: 'Atmosphere Cafe' },
+              { id: 'a-cold-coffee', name: 'Cold Coffee', variantLabel: '', qty: 1, price: 69, lineTotal: 69, restaurantId: 'atmosphere-cafe', restaurantName: 'Atmosphere Cafe' }
+            ],
+            status: 'Pending',
+            subtotal: 208,
+            commission: '4.16',
+            total: '212.16',
+            createdAt: new Date(now - 2 * 60000).toISOString()
+          },
+          {
+            token: 'FV-4805',
+            studentName: 'Rohan Nair',
+            rollNo: '23EC044',
+            mode: 'delivery',
+            location: 'Main Entrance Central Block',
+            slot: 'Next Lecture Break (1:00 PM)',
+            kitchens: ['Cafe by the Valley', 'Atmosphere Cafe'],
+            kitchenIds: ['cafe-by-the-valley', 'atmosphere-cafe'],
+            kitchenTotals: { 'cafe-by-the-valley': 120, 'atmosphere-cafe': 149 },
+            items: [
+              { id: 'v-masala-dosa', name: 'Masala Dosa', variantLabel: '', qty: 1, price: 120, lineTotal: 120, restaurantId: 'cafe-by-the-valley', restaurantName: 'Cafe by the Valley' },
+              { id: 'a-chicken-dum-biryani', name: 'Chicken Dum Biryani', variantLabel: '', qty: 1, price: 149, lineTotal: 149, restaurantId: 'atmosphere-cafe', restaurantName: 'Atmosphere Cafe' }
+            ],
+            status: 'Ready',
+            subtotal: 269,
+            commission: '0',
+            total: '269',
+            createdAt: new Date(now - 14 * 60000).toISOString()
+          }
+        ];
+
+        const existing = FoodVerse.loadOrders();
+        const map = {};
+        samples.forEach(function (s) { map[s.token] = s; });
+        existing.forEach(function (o) { map[o.token] = o; });
+        cachedOrders = Object.values(map).sort(function (a, b) {
+          return new Date(b.createdAt || 0) - new Date(a.createdAt || 0);
+        });
+        FoodVerse.saveOrders(cachedOrders);
+        samples.forEach(function (s) {
+          FoodVerse.syncOrderApi('POST', FoodVerse.getApiPrefix() + 'api/orders', s);
+        });
+        renderBoard();
+      }
+
+      function exportOrdersCsv() {
+        if (!cachedOrders.length) return;
+        const rows = [['Token', 'Timestamp', 'Status', 'Student', 'RollNo', 'Kitchens', 'Mode', 'Location', 'TimeSlot', 'Subtotal', 'HostelCommission2Pct', 'Total', 'Items']];
+        cachedOrders.forEach(function (o) {
+          const itemStr = (o.items || []).map(function (i) {
+            return i.qty + 'x ' + i.name + (i.variantLabel ? ' (' + i.variantLabel + ')' : '');
+          }).join('; ');
+          rows.push([
+            o.token,
+            o.createdAt,
+            o.status || 'Pending',
+            o.studentName,
+            o.rollNo,
+            (o.kitchens || []).join(' & '),
+            modeLabel(o.mode),
+            o.location,
+            o.slot,
+            o.subtotal != null ? o.subtotal : o.total,
+            o.commission || '0',
+            o.total,
+            itemStr
+          ].map(function (cell) {
+            return '"' + String(cell == null ? '' : cell).replace(/"/g, '""') + '"';
+          }));
+        });
+        const csv = rows.map(function (r) { return r.join(','); }).join('\n');
+        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'foodverse-orders.csv';
+        a.click();
+        URL.revokeObjectURL(url);
+      }
+
+      // Bind Filters & Toolbar
+      document.querySelectorAll('[data-kitchen-filter]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          document.querySelectorAll('[data-kitchen-filter]').forEach(function (b) { b.classList.remove('is-active'); });
+          btn.classList.add('is-active');
+          kitchenFilter = btn.getAttribute('data-kitchen-filter');
+          renderBoard();
+        });
+      });
+
+      document.querySelectorAll('[data-status-filter]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          document.querySelectorAll('[data-status-filter]').forEach(function (b) { b.classList.remove('is-active'); });
+          btn.classList.add('is-active');
+          statusFilter = btn.getAttribute('data-status-filter');
+          renderBoard();
+        });
+      });
+
+      document.getElementById('orders-mode-filter').addEventListener('change', function (e) {
+        modeFilter = e.target.value;
+        renderBoard();
+      });
+
+      document.getElementById('orders-search-input').addEventListener('input', function (e) {
+        searchTerm = e.target.value.trim();
+        renderBoard();
+      });
+
+      document.getElementById('fv-seed-orders').addEventListener('click', seedSampleOrders);
+      document.getElementById('fv-export-csv').addEventListener('click', exportOrdersCsv);
+      document.getElementById('fv-clear-orders').addEventListener('click', function () {
+        if (cachedOrders.length === 0 || window.confirm('Clear all received orders from the queue?')) {
+          cachedOrders = FoodVerse.clearOrdersStore();
+          renderBoard();
+        }
+      });
+
+      // Live updates across tabs & optional Node server
+      window.addEventListener('storage', function () {
+        cachedOrders = FoodVerse.loadOrders();
+        renderBoard();
+      });
+      if (FoodVerse.orderChannel) {
+        FoodVerse.orderChannel.addEventListener('message', function () {
+          cachedOrders = FoodVerse.loadOrders();
+          renderBoard();
+        });
+      }
+
+      FoodVerse.initBurgerRunnerLoader();
+      renderBoard();
+
+      function refreshFromServer() {
+        return FoodVerse.fetchOrdersWithServerSync().then(function (synced) {
+          if (Array.isArray(synced)) {
+            cachedOrders = synced;
+            renderBoard();
+          }
+        });
+      }
+
+      refreshFromServer();
+
+      if (/^https?:$/.test(window.location.protocol)) {
+        fetch(FoodVerse.getApiPrefix() + 'api/orders').then(function (r) {
+          if (r.ok) {
+            document.getElementById('orders-sync-text').textContent = 'Node Backend API Connected';
+          }
+        }).catch(function () {});
+
+        window.addEventListener('focus', refreshFromServer);
+        setInterval(function () {
+          if (document.visibilityState === 'visible') {
+            refreshFromServer();
+          }
+        }, 8000);
+      }
+    });
+  </script>
+</body>
+</html>

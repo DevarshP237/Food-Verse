@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Food Verse — Campus Dining Collective</title>
+  <meta http-equiv="refresh" content="0; url=frontend/index.html" />
+  <script>
+    try {
+      if (localStorage.getItem('foodverse_theme_v1') === 'dark') {
+        document.documentElement.classList.add('dark-mode');
+      }
+    } catch (e) {}
+    window.location.replace('frontend/index.html');
+  </script>
+  <style>
+    html.dark-mode, html.dark-mode body { background: #000000; color: #ffffff; }
+    body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; display: grid; place-items: center; min-height: 100vh; margin: 0; }
+    a { color: #163a6b; }
+    html.dark-mode a { color: #ffffff; }
+  </style>
+</head>
+<body>
+  <p>Opening <a href="frontend/index.html">Food Verse Campus Portal</a>&hellip;</p>
+</body>
+</html>

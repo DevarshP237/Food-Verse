@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Food Verse — University Campus Gastronomy Portal</title>
+  <meta name="description" content="Food Verse connects your university's two signature dining houses—Cafe by the Valley and Atmosphere Cafe—with minimalist animated ASCII dish showcases and seamless campus ordering." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'" />
+  <script>try{if(localStorage.getItem('foodverse_theme_v1')==='dark')document.documentElement.classList.add('dark-mode');}catch(e){}</script>
+  <style>html.dark-mode,html.dark-mode body{background:#000000;color:#ffffff;}</style>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='14' fill='%231d4e89'/><text x='16' y='21' text-anchor='middle' font-size='14' font-family='serif' fill='white'>FV</text></svg>" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body class="is-fv-loading">
+  <!-- Plain White ASCII Burger Runner Preloader -->
+  <div class="fv-loader" id="fv-loader" role="status" aria-live="polite" aria-label="Loading Food Verse">
+    <pre class="fv-runner-pre" id="fv-runner-pre" aria-hidden="true"></pre>
+  </div>
+
+  <!-- Shared Header -->
+  <div id="fv-header"></div>
+
+  <main>
+    <!-- 1. HERO EXHIBITION (Cartier Into the Wild White Minimalist Template) -->
+    <section class="hero-exhibition">
+      <div class="container hero-exhibition__grid">
+        <div class="hero-exhibition__copy">
+          <span class="eyebrow gs-hero">Campus Dining Collective &middot; 2026</span>
+          <h1 class="hero-exhibition__title gs-hero">
+            Two Kitchens.<br />
+            <em>One Curated</em><br />
+            Campus Table.
+          </h1>
+          <p class="hero-exhibition__lead gs-hero">
+            Food Verse unites your university&rsquo;s signature kitchens into a single minimalist portal. Scroll through each dining house, enjoy animated ASCII showcases, and order directly to your hostel or lecture hall.
+          </p>
+          <div class="hero-exhibition__cta-row gs-hero">
+            <a href="#restaurant-stories" class="btn-editorial btn-editorial--pill">Scroll the Houses &darr;</a>
+            <a href="#unified-menu" class="btn-editorial btn-editorial--outline btn-editorial--pill">Browse All Menus</a>
+          </div>
+          <div class="hero-metrics gs-hero">
+            <div>
+              <div class="hero-metric__val">02</div>
+              <div class="hero-metric__label">Campus Kitchens</div>
+            </div>
+            <div>
+              <div class="hero-metric__val">150</div>
+              <div class="hero-metric__label">Fresh Daily Dishes</div>
+            </div>
+            <div>
+              <div class="hero-metric__val">15m</div>
+              <div class="hero-metric__label">Avg. Prep Window</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Architectural Minimalist Vitrine Frame -->
+        <div class="vitrine-stage gs-vitrine" id="hero-vitrine">
+          <div class="vitrine-stage__inner">
+            <canvas class="vitrine-stage__canvas" id="hero-3d-canvas" aria-label="Animated ASCII Dish Showcase"></canvas>
+            <div class="vitrine-hud" style="justify-content:flex-end;">
+              <div class="vitrine-hud__bottom">
+                <div class="vitrine-switcher" role="tablist" aria-label="Switch Featured Dish">
+                  <button type="button" class="is-active" data-hero-model="valley-club-sandwich" data-label="Cafe by the Valley &mdash; Peri Peri Grilled (₹140)" data-href="restaurants/cafe-by-the-valley.html">01 Valley</button>
+                  <button type="button" data-hero-model="atmosphere-paratha-platter" data-label="Atmosphere Cafe &mdash; Aloo Cheese Paratha (₹129)" data-href="restaurants/atmosphere-cafe.html">02 Atmosphere</button>
+                </div>
+                <a href="restaurants/cafe-by-the-valley.html" class="vitrine-caption" id="hero-caption-link">
+                  <span id="hero-caption-text">Cafe by the Valley &mdash; Peri Peri Grilled (₹140)</span>
+                  <strong>&rarr;</strong>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. INFINITE EDITORIAL STRIP -->
+    <div class="editorial-strip" aria-hidden="true">
+      <div class="editorial-strip__track">
+        <span>Cafe by the Valley</span><span class="editorial-strip__star">&#10022;</span>
+        <span>Artisanal Sandwiches &amp; Cold Brews</span><span class="editorial-strip__star">&#10022;</span>
+        <span>Atmosphere Cafe</span><span class="editorial-strip__star">&#10022;</span>
+        <span>Hand-Rolled Stuffed Parathas &amp; Kulhad Chai</span><span class="editorial-strip__star">&#10022;</span>
+        <span>Cafe by the Valley</span><span class="editorial-strip__star">&#10022;</span>
+        <span>Artisanal Sandwiches &amp; Cold Brews</span><span class="editorial-strip__star">&#10022;</span>
+        <span>Atmosphere Cafe</span><span class="editorial-strip__star">&#10022;</span>
+        <span>Hand-Rolled Stuffed Parathas &amp; Kulhad Chai</span><span class="editorial-strip__star">&#10022;</span>
+      </div>
+    </div>
+
+    <!-- 3. SCROLL-STORYTELLING RESTAURANT CHAPTERS (Pictures + Parallax + Info on Scroll) -->
+    <section class="story-chapters" id="restaurant-stories">
+      <div class="container">
+        <div class="section-header gs-reveal" style="margin-bottom:28px;">
+          <div>
+            <span class="eyebrow">Into the Campus Dining Houses</span>
+            <h2 class="section-header__title">Two Distinct Culinary Chapters</h2>
+          </div>
+          <p class="section-header__desc">
+            Scroll through each campus kitchen to discover its atmosphere, signature specialties, hours, and instant ordering gateway.
+          </p>
+        </div>
+
+        <!-- Chapter 01: Café by The Valley -->
+        <article class="story-chapter">
+          <div class="story-chapter__head">
+            <div class="story-chapter__title-wrap">
+              <span class="story-chapter__num">01</span>
+              <div>
+                <span class="eyebrow" style="color:#3b82c4;">Breakfast, Sandwiches, Wok, Pizza &amp; Shakes</span>
+                <h3 class="story-chapter__title">Caf&eacute; by <em style="color:#1d4e89;">The Valley</em></h3>
+              </div>
+            </div>
+            <div class="story-chapter__timeline" aria-hidden="true">
+              <span class="story-chapter__timeline-label">Scroll Chapter</span>
+              <div class="story-chapter__track">
+                <div class="story-chapter__progress" style="background:#3b82c4;"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="story-chapter__grid">
+            <div class="story-chapter__media">
+              <div class="story-chapter__frame">
+                <img class="story-chapter__img" src="assets/images/valley-editorial.jpg" alt="Café by The Valley sandwiches and cold coffee" loading="eager" />
+              </div>
+              <span class="story-chapter__plate-tag" style="color:#1d4e89;">Central Block &middot; Ground Floor</span>
+            </div>
+
+            <div class="story-chapter__details">
+              <p class="story-chapter__lead">
+                All-day campus comfort—from morning Benne Masala Dosa and Peri Peri Grilled Sandwiches to burnt-garlic hakka noodles, pizzas, burrito bowls, and Oreo shakes.
+              </p>
+              <div class="story-chapter__specs">
+                <div>
+                  <span class="story-spec__k">Address</span>
+                  <span class="story-spec__v">Central Block, Ground Floor, Near the CPCG Office</span>
+                </div>
+                <div>
+                  <span class="story-spec__k">Best Seller</span>
+                  <span class="story-spec__v">Peri Peri Grilled (₹140 / ₹160)</span>
+                </div>
+                <div>
+                  <span class="story-spec__k">Home Delivery</span>
+                  <span class="story-spec__v">+91 88560 80488</span>
+                </div>
+                <div>
+                  <span class="story-spec__k">Price Range</span>
+                  <span class="story-spec__v">₹20 — ₹330 &middot; 12 Categories</span>
+                </div>
+              </div>
+              <div class="story-chapter__actions">
+                <a href="restaurants/cafe-by-the-valley.html" class="btn-editorial btn-editorial--pill">Explore Valley Menu &rarr;</a>
+                <button type="button" class="add-btn" data-add-id="v-periperi-grilled">
+                  <span>Add to Tray</span><span>+</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Chapter 02: Atmosphere Cafe -->
+        <article class="story-chapter story-chapter--reverse">
+          <div class="story-chapter__head">
+            <div class="story-chapter__title-wrap">
+              <span class="story-chapter__num">02</span>
+              <div>
+                <span class="eyebrow" style="color:#3888e8;">Morning Magic, Stuffed Parathas, Biryani &amp; Drinks</span>
+                <h3 class="story-chapter__title">Atmosphere <em style="color:#132a5c;">Cafe</em></h3>
+              </div>
+            </div>
+            <div class="story-chapter__timeline" aria-hidden="true">
+              <span class="story-chapter__timeline-label">Scroll Chapter</span>
+              <div class="story-chapter__track">
+                <div class="story-chapter__progress" style="background:#3888e8;"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="story-chapter__grid">
+            <div class="story-chapter__media">
+              <div class="story-chapter__frame">
+                <img class="story-chapter__img" src="assets/images/atmosphere-editorial.jpg" alt="Atmosphere Cafe flaky tandoori stuffed paratha with white makhan butter, raita, mint chutney and kulhad chai" loading="eager" />
+              </div>
+              <span class="story-chapter__plate-tag" style="color:#132a5c;">Management Block &middot; First Floor</span>
+            </div>
+
+            <div class="story-chapter__details">
+              <p class="story-chapter__lead">
+                Over 40 handcrafted Aloo, Gobi, Paneer, Methi, Cheese &amp; Special Parathas alongside Morning Magic, Snack Stories, Dum Biryani, and ₹15 Kulhad Tea.
+              </p>
+              <div class="story-chapter__specs">
+                <div>
+                  <span class="story-spec__k">Address</span>
+                  <span class="story-spec__v">Management Block, First Floor, Next to SIB Bank Office</span>
+                </div>
+                <div>
+                  <span class="story-spec__k">Best Seller</span>
+                  <span class="story-spec__v">Aloo Cheese Paratha (₹129)</span>
+                </div>
+                <div>
+                  <span class="story-spec__k">Delivery Contact</span>
+                  <span class="story-spec__v">+91 7709252214</span>
+                </div>
+                <div>
+                  <span class="story-spec__k">Price Range</span>
+                  <span class="story-spec__v">₹15 — ₹149 &middot; 12 Categories</span>
+                </div>
+              </div>
+              <div class="story-chapter__actions">
+                <a href="restaurants/atmosphere-cafe.html" class="btn-editorial btn-editorial--pill">Explore Atmosphere Menu &rarr;</a>
+                <button type="button" class="add-btn" data-add-id="a-aloo-cheese">
+                  <span>Add to Tray</span><span>+</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 4. MINIMALIST VITRINE DUO -->
+    <section class="section-pad" id="two-houses" style="padding-top:44px;">
+      <div class="container">
+        <div class="section-header gs-reveal">
+          <div>
+            <span class="eyebrow">Curated Houses</span>
+            <h2 class="section-header__title">Signature Houses</h2>
+          </div>
+          <p class="section-header__desc">
+            Step inside either campus restaurant for full categorized menus and live animated previews of their house favorites.
+          </p>
+        </div>
+
+        <div class="houses-grid houses-grid--two">
+          <!-- House 01: Cafe by the Valley -->
+          <article class="house-card gs-reveal">
+            <div class="house-card__stage">
+              <canvas class="house-card__canvas" id="card-3d-valley"></canvas>
+              <span class="house-card__index">01</span>
+              <span class="house-card__tag">All-Day Campus Menu</span>
+            </div>
+            <div class="house-card__body">
+              <span class="house-card__cuisine" style="color:#1d4e89;">Central Block, Ground Floor &middot; Near CPCG Office</span>
+              <h3 class="house-card__name">Caf&eacute; by The Valley</h3>
+              <p class="house-card__desc">
+                Breakfast dosas, grilled sandwiches, burgers, wraps, pasta, pizzas, wok specials, and milkshakes.
+              </p>
+              <ul class="house-card__highlights">
+                <li><span>Signature Dish</span><strong>Peri Peri Grilled</strong></li>
+                <li><span>Price Range</span><strong>₹20 — ₹330</strong></li>
+                <li><span>Home Delivery</span><strong>+91 88560 80488</strong></li>
+              </ul>
+              <div class="house-card__footer">
+                <a href="restaurants/cafe-by-the-valley.html" class="btn-editorial btn-editorial--pill" style="width:100%;">
+                  Enter Cafe by the Valley &rarr;
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- House 02: Atmosphere Cafe -->
+          <article class="house-card gs-reveal">
+            <div class="house-card__stage">
+              <canvas class="house-card__canvas" id="card-3d-atmosphere"></canvas>
+              <span class="house-card__index">02</span>
+              <span class="house-card__tag">Parathas &amp; Specials</span>
+            </div>
+            <div class="house-card__body">
+              <span class="house-card__cuisine" style="color:#132a5c;">Management Block, First Floor &middot; Next to SIB Bank</span>
+              <h3 class="house-card__name">Atmosphere Cafe</h3>
+              <p class="house-card__desc">
+                40+ stuffed parathas, Morning Magic breakfast, evening Snack Stories, Dum Biryani, and Drink Dispatch.
+              </p>
+              <ul class="house-card__highlights">
+                <li><span>Signature Dish</span><strong>Aloo Cheese Paratha</strong></li>
+                <li><span>Price Range</span><strong>₹15 — ₹149</strong></li>
+                <li><span>Delivery Contact</span><strong>+91 7709252214</strong></li>
+              </ul>
+              <div class="house-card__footer">
+                <a href="restaurants/atmosphere-cafe.html" class="btn-editorial btn-editorial--pill" style="width:100%;">
+                  Enter Atmosphere Cafe &rarr;
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. ARCHITECTURAL PROCESS STRIP -->
+    <section class="section-pad" style="padding-top:16px;">
+      <div class="container">
+        <div class="hairline gs-line" style="margin-bottom:48px;"></div>
+        <div class="houses-grid">
+          <div class="gs-reveal">
+            <span class="eyebrow">Step I</span>
+            <h3 class="serif-title" style="font-size:1.85rem; margin:10px 0;">Curated Dish Previews</h3>
+            <p style="font-size:0.9rem; color:var(--ink-muted);">
+              Enjoy calm, minimalist animated showcases of each kitchen&rsquo;s signature dishes as you browse.
+            </p>
+          </div>
+          <div class="gs-reveal">
+            <span class="eyebrow">Step II</span>
+            <h3 class="serif-title" style="font-size:1.85rem; margin:10px 0;">Mix Across Kitchens</h3>
+            <p style="font-size:0.9rem; color:var(--ink-muted);">
+              Pair a Valley Club Panini with Stuffed Parathas &amp; Kulhad Chai from Atmosphere Cafe in one unified tray.
+            </p>
+          </div>
+          <div class="gs-reveal">
+            <span class="eyebrow">Step III</span>
+            <h3 class="serif-title" style="font-size:1.85rem; margin:10px 0;">Hostel Drop or Express</h3>
+            <p style="font-size:0.9rem; color:var(--ink-muted);">
+              Choose zero-fee campus delivery to Hostel Blocks A–D &amp; Library Lawn, or breeze past queues at Express Pickup.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. UNIFIED CAMPUS MENU EXPLORER -->
+    <section class="section-pad menu-explorer" id="unified-menu">
+      <div class="container">
+        <div class="section-header gs-reveal">
+          <div>
+            <span class="eyebrow">Campus Directory</span>
+            <h2 class="section-header__title">Browse &amp; Order Across All Houses</h2>
+          </div>
+          <p class="section-header__desc">
+            In a rush between lectures? Filter or search across both campus restaurants and add items straight to your tray.
+          </p>
+        </div>
+
+        <div class="filter-toolbar gs-reveal">
+          <div class="filter-pills" id="portal-filters">
+            <button type="button" class="filter-pill is-active" data-filter="all" id="portal-all-pill">All Houses</button>
+            <button type="button" class="filter-pill" data-filter="cafe-by-the-valley">Cafe by the Valley</button>
+            <button type="button" class="filter-pill" data-filter="atmosphere-cafe">Atmosphere Cafe</button>
+          </div>
+          <div class="search-box">
+            <svg class="search-box__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="search" id="portal-search" placeholder="Search paratha, sandwich, cold brew, chai..." aria-label="Search all campus dishes" />
+          </div>
+        </div>
+
+        <div class="unified-menu-grid" id="portal-menu-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Shared Footer -->
+  <div id="fv-footer"></div>
+
+  <script src="assets/vendor/gsap.min.js"></script>
+  <script src="assets/vendor/ScrollTrigger.min.js"></script>
+  <script src="assets/js/foodverse-core.js"></script>
+  <script src="assets/js/foodverse-3d.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      FoodVerse.renderSharedChrome('home');
+
+      // Render unified menu first so DOM is immediately ready
+      const allPill = document.getElementById('portal-all-pill');
+      if (allPill) {
+        allPill.textContent = 'All Houses (' + FoodVerse.MENU_ITEMS.length + ')';
+      }
+      let activeFilter = 'all';
+      let searchTerm = '';
+      const grid = document.getElementById('portal-menu-grid');
+
+      function renderUnifiedMenu() {
+        const filtered = FoodVerse.MENU_ITEMS.filter(function (item) {
+          const matchesRest = activeFilter === 'all' || item.restaurantId === activeFilter;
+          const q = searchTerm.trim().toLowerCase();
+          const matchesQuery = !q ||
+            item.name.toLowerCase().includes(q) ||
+            item.description.toLowerCase().includes(q) ||
+            item.category.toLowerCase().includes(q);
+          return matchesRest && matchesQuery;
+        });
+
+        if (filtered.length === 0) {
+          grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:48px 16px; color:var(--ink-muted); border:1px solid var(--line); background:var(--bg-soft);">No dishes matched your search. Try "Paratha", "Panini", or "Chai".</div>';
+          return;
+        }
+
+        grid.innerHTML = filtered.map(function (item) {
+          return FoodVerse.createDishCardHtml(item, true);
+        }).join('');
+        FoodVerse.bindAddButtons(grid);
+        if (typeof window.ScrollTrigger !== 'undefined') {
+          window.ScrollTrigger.refresh();
+        }
+      }
+
+      document.querySelectorAll('#portal-filters .filter-pill').forEach(function (pill) {
+        pill.addEventListener('click', function () {
+          document.querySelectorAll('#portal-filters .filter-pill').forEach(function (p) { p.classList.remove('is-active'); });
+          pill.classList.add('is-active');
+          activeFilter = pill.getAttribute('data-filter');
+          renderUnifiedMenu();
+        });
+      });
+
+      document.getElementById('portal-search').addEventListener('input', function (e) {
+        searchTerm = e.target.value;
+        renderUnifiedMenu();
+      });
+
+      renderUnifiedMenu();
+      FoodVerse.bindAddButtons(document.getElementById('restaurant-stories'));
+      FoodVerse.initScrollAnimations();
+
+      // 1. Hero Minimalist ASCII Vitrine
+      const heroStage = FoodVerse3D.createStage(
+        document.getElementById('hero-3d-canvas'),
+        'valley-club-sandwich',
+        { compact: false }
+      );
+
+      const heroSwitchBtns = document.querySelectorAll('[data-hero-model]');
+      const heroCaptionText = document.getElementById('hero-caption-text');
+      const heroCaptionLink = document.getElementById('hero-caption-link');
+
+      heroSwitchBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          heroSwitchBtns.forEach(function (b) { b.classList.remove('is-active'); });
+          btn.classList.add('is-active');
+          const modelId = btn.getAttribute('data-hero-model');
+          if (heroStage) heroStage.loadModel(modelId);
+          heroCaptionText.innerHTML = btn.getAttribute('data-label');
+          heroCaptionLink.setAttribute('href', btn.getAttribute('data-href'));
+        });
+      });
+
+      // 2. Two House Cards ASCII Previews
+      FoodVerse3D.createStage(document.getElementById('card-3d-valley'), 'valley-club-sandwich', { compact: true });
+      FoodVerse3D.createStage(document.getElementById('card-3d-atmosphere'), 'atmosphere-paratha-platter', { compact: true });
+
+      // 3. Plain White ASCII Burger Runner Preloader (Runs Left -> End -> Opens Website)
+      FoodVerse.initBurgerRunnerLoader();
+    });
+  </script>
+</body>
+</html>

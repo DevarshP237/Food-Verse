@@ -1,0 +1,10 @@
+{
+  "name": "food-verse-backend",
+  "version": "1.0.0",
+  "description": "Zero-dependency Node.js static and kitchen orders backend for the Food Verse campus dining portal.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "license": "MIT"
+}

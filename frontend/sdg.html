@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SDG Alignments — Food Verse Campus Gastronomy Portal</title>
+  <meta name="description" content="How Food Verse integrates with UN Sustainable Development Goals: SDG 9 (Industry, Innovation & Infrastructure), SDG 12 (Responsible Consumption & Production), and SDG 3 (Good Health & Well-being)." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'" />
+  <script>try{if(localStorage.getItem('foodverse_theme_v1')==='dark')document.documentElement.classList.add('dark-mode');}catch(e){}</script>
+  <style>html.dark-mode,html.dark-mode body{background:#000000;color:#ffffff;}</style>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='14' fill='%231d4e89'/><text x='16' y='21' text-anchor='middle' font-size='14' font-family='serif' fill='white'>FV</text></svg>" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <!-- Shared Header -->
+  <div id="fv-header"></div>
+
+  <main>
+    <!-- 1. AQUEST-INSPIRED KINETIC SPLIT HERO -->
+    <section class="sdg-hero">
+      <div class="container hero-exhibition__grid">
+        <div class="hero-exhibition__copy">
+          <span class="eyebrow gs-hero">UN Sustainable Development Goals &middot; Campus Impact</span>
+
+          <h1 class="aq-hero-title" id="aq-hero-heading">
+            <span class="aq-line"><span class="aq-line__inner gs-aq-line">Campus Dining.</span></span>
+            <span class="aq-line"><span class="aq-line__inner gs-aq-line"><em>Aligned With</em></span></span>
+            <span class="aq-line"><span class="aq-line__inner gs-aq-line"><span class="aq-stroke" id="aq-hero-stroke">Global Goals.</span></span></span>
+          </h1>
+
+          <p class="hero-exhibition__lead gs-hero" style="margin-bottom: 20px;">
+            Food Verse turns everyday university dining into a measurable sustainability engine—connecting kitchens on one resilient digital architecture, cutting food &amp; paper waste, and protecting student break-time well-being.
+          </p>
+
+          <!-- Live Orbital Goal Readout Bar -->
+          <div class="aq-orbital-bar gs-hero">
+            <svg class="aq-orbital-spinner" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+              <circle cx="24" cy="24" r="21" stroke="#b6cce2" stroke-width="1.5" stroke-dasharray="4 4" />
+              <circle cx="24" cy="24" r="14" stroke="#3b82c4" stroke-width="1.5" />
+              <circle cx="24" cy="3" r="3" fill="#163a6b" />
+            </svg>
+            <div class="aq-orbital-status">
+              <span class="aq-orbital-status__k">Active Focus Lens</span>
+              <span class="aq-orbital-status__v" id="aq-orbital-text">SDG 09 &mdash; Unified Web Architecture &amp; Kitchen Sync</span>
+            </div>
+          </div>
+
+          <!-- Magnetic Interactive Goal Jumps -->
+          <div class="sdg-quick-pills gs-hero" aria-label="Jump to SDG Goal">
+            <a href="#sdg-chapter-9" class="sdg-quick-pill aq-magnetic" data-orbital-preview="SDG 09 — Unified Web Architecture & Kitchen Sync">
+              <span class="sdg-quick-pill__num">09</span> Infrastructure
+            </a>
+            <a href="#sdg-chapter-12" class="sdg-quick-pill aq-magnetic" data-orbital-preview="SDG 12 — Pre-Scheduled Slots & Zero Paper Receipts">
+              <span class="sdg-quick-pill__num">12</span> Zero-Waste Prep
+            </a>
+            <a href="#sdg-chapter-3" class="sdg-quick-pill aq-magnetic" data-orbital-preview="SDG 03 — Queue-Free Meals & Campus Crowd Relief">
+              <span class="sdg-quick-pill__num">03</span> Well-being
+            </a>
+          </div>
+
+          <div class="hero-exhibition__cta-row gs-hero" style="margin-bottom: 28px;">
+            <a href="#sdg-matrix" class="btn-editorial btn-editorial--pill aq-magnetic">Explore Architecture &darr;</a>
+            <a href="index.html" class="btn-editorial btn-editorial--outline btn-editorial--pill aq-magnetic">Back to Portal</a>
+          </div>
+
+          <div class="hero-metrics gs-hero">
+            <div>
+              <div class="hero-metric__val">2 &rarr; 1</div>
+              <div class="hero-metric__label">Unified Web Spine</div>
+            </div>
+            <div>
+              <div class="hero-metric__val">100%</div>
+              <div class="hero-metric__label">Paperless Passes</div>
+            </div>
+            <div>
+              <div class="hero-metric__val">Zero</div>
+              <div class="hero-metric__label">Queue Delays</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3D Tilt Interactive ASCII Vitrine -->
+        <div class="vitrine-stage gs-vitrine aq-spotlight-card" id="sdg-vitrine">
+          <div class="vitrine-stage__inner">
+            <canvas class="vitrine-stage__canvas" id="sdg-hero-canvas" aria-label="Animated SDG ASCII Showcase"></canvas>
+            <div class="vitrine-hud" style="justify-content:flex-end;">
+              <div class="vitrine-hud__bottom">
+                <div class="vitrine-switcher" role="tablist" aria-label="Switch SDG ASCII">
+                  <button type="button" class="is-active aq-magnetic" data-sdg-model="sdg-9" data-label="SDG 9 &mdash; Industry, Innovation &amp; Infrastructure" data-href="#sdg-chapter-9" data-orbit="SDG 09 &mdash; Unified Web Architecture &amp; Kitchen Sync">SDG 09</button>
+                  <button type="button" class="aq-magnetic" data-sdg-model="sdg-12" data-label="SDG 12 &mdash; Responsible Consumption &amp; Production" data-href="#sdg-chapter-12" data-orbit="SDG 12 &mdash; Pre-Scheduled Slots &amp; Zero Paper Receipts">SDG 12</button>
+                  <button type="button" class="aq-magnetic" data-sdg-model="sdg-3" data-label="SDG 03 &mdash; Good Health &amp; Well-being" data-href="#sdg-chapter-3" data-orbit="SDG 03 &mdash; Queue-Free Meals &amp; Campus Crowd Relief">SDG 03</button>
+                </div>
+                <a href="#sdg-chapter-9" class="vitrine-caption aq-magnetic" id="sdg-caption-link">
+                  <span id="sdg-caption-text">SDG 9 &mdash; Industry, Innovation &amp; Infrastructure</span>
+                  <strong>&darr;</strong>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. OPPOSING VELOCITY-SKEW KINETIC MARQUEES (AQuest Style) -->
+    <div class="aq-kinetic-band" aria-hidden="true">
+      <div class="aq-marquee-row" id="aq-marquee-top">
+        <span class="aq-marquee-item">09 // Digital Infrastructure</span>
+        <span class="aq-marquee-sep">&#10022;</span>
+        <span class="aq-marquee-item aq-marquee-item--stroke">12 // Zero-Waste Prep</span>
+        <span class="aq-marquee-sep">&#10022;</span>
+        <span class="aq-marquee-item">03 // Student Well-Being</span>
+        <span class="aq-marquee-sep">&#10022;</span>
+        <span class="aq-marquee-item">09 // Digital Infrastructure</span>
+        <span class="aq-marquee-sep">&#10022;</span>
+        <span class="aq-marquee-item aq-marquee-item--stroke">12 // Zero-Waste Prep</span>
+        <span class="aq-marquee-sep">&#10022;</span>
+        <span class="aq-marquee-item">03 // Student Well-Being</span>
+        <span class="aq-marquee-sep">&#10022;</span>
+      </div>
+      <div class="aq-marquee-row" id="aq-marquee-bottom">
+        <span class="aq-marquee-item aq-marquee-item--stroke">Unified Campus Platform</span>
+        <span class="aq-marquee-sep">&#10022;</span>
+        <span class="aq-marquee-item">Demand-Matched Kitchens</span>
+        <span class="aq-marquee-sep">&#10022;</span>
+        <span class="aq-marquee-item aq-marquee-item--stroke">Paperless FV-XXXX Tokens</span>
+        <span class="aq-marquee-sep">&#10022;</span>
+        <span class="aq-marquee-item">Unified Campus Platform</span>
+        <span class="aq-marquee-sep">&#10022;</span>
+        <span class="aq-marquee-item aq-marquee-item--stroke">Demand-Matched Kitchens</span>
+        <span class="aq-marquee-sep">&#10022;</span>
+        <span class="aq-marquee-item">Paperless FV-XXXX Tokens</span>
+        <span class="aq-marquee-sep">&#10022;</span>
+      </div>
+    </div>
+
+    <!-- 3. SCROLL-SCRUBBED KINETIC MANIFESTO STATEMENT -->
+    <section class="aq-manifesto-band">
+      <div class="container">
+        <span class="eyebrow" style="margin-bottom:18px;">Kinetic Sustainability Thesis</span>
+        <p class="aq-scrub-statement" id="aq-scrub-statement">
+          When fragmented manual counters become one synchronized digital kitchen network, campus waste shrinks, paper vanishes, and every student gets time back to nourish well.
+        </p>
+      </div>
+    </section>
+
+    <!-- 4. CAMPUS TRANSFORMATION MATRIX (3D Tilt Cards) -->
+    <section class="sdg-matrix-section" id="sdg-matrix">
+      <div class="container">
+        <div class="section-header gs-sdg-fade" style="margin-bottom:36px;">
+          <div>
+            <span class="eyebrow">System Transformation</span>
+            <h2 class="section-header__title" data-kinetic-words>Legacy Counter vs. Food-Verse Platform</h2>
+          </div>
+          <p class="section-header__desc">
+            Hover across each card to inspect the spatial depth and see how manual campus bottlenecks convert into three measurable UN sustainability outcomes.
+          </p>
+        </div>
+
+        <div class="sdg-matrix-grid">
+          <!-- Pillar 09 -->
+          <article class="sdg-pillar-card aq-spotlight-card gs-sdg-card">
+            <div class="sdg-pillar-card__top">
+              <span class="sdg-pillar-card__badge">SDG 09 &middot; Innovation</span>
+              <span class="sdg-pillar-card__num">09</span>
+            </div>
+            <h3 class="sdg-pillar-card__title">Industry, Innovation &amp; Infrastructure</h3>
+            <div class="sdg-contrast">
+              <div class="sdg-contrast__row">
+                <span class="sdg-contrast__tag sdg-contrast__tag--old">Legacy Friction</span>
+                <span class="sdg-contrast__val">Fragmented, manual counter-based ordering across separate stalls.</span>
+              </div>
+              <div class="sdg-contrast__row">
+                <span class="sdg-contrast__tag sdg-contrast__tag--new">Food-Verse Solution</span>
+                <span class="sdg-contrast__val"><strong>Unified Campus Digital Platform:</strong> Centralized Admin &amp; Restaurant Management Dashboard, digital menus, and real-time order workflows.</span>
+              </div>
+            </div>
+            <div class="sdg-meter">
+              <div class="sdg-meter__head">
+                <span>Platform Digitization</span>
+                <strong>100% Unified</strong>
+              </div>
+              <div class="sdg-meter__track">
+                <div class="sdg-meter__fill gs-sdg-meter" style="--target-w: 100%;"></div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Pillar 12 -->
+          <article class="sdg-pillar-card aq-spotlight-card gs-sdg-card">
+            <div class="sdg-pillar-card__top">
+              <span class="sdg-pillar-card__badge">SDG 12 &middot; Zero-Waste</span>
+              <span class="sdg-pillar-card__num">12</span>
+            </div>
+            <h3 class="sdg-pillar-card__title">Responsible Consumption &amp; Production</h3>
+            <div class="sdg-contrast">
+              <div class="sdg-contrast__row">
+                <span class="sdg-contrast__tag sdg-contrast__tag--old">Legacy Friction</span>
+                <span class="sdg-contrast__val">Blind kitchen over-preparation and single-use paper order receipts.</span>
+              </div>
+              <div class="sdg-contrast__row">
+                <span class="sdg-contrast__tag sdg-contrast__tag--new">Food-Verse Solution</span>
+                <span class="sdg-contrast__val"><strong>Demand Visibility &amp; Paperless Passes:</strong> Pre-scheduled pickup slots prevent surplus cooking while digital notices replace paper slips.</span>
+              </div>
+            </div>
+            <div class="sdg-meter">
+              <div class="sdg-meter__head">
+                <span>Paper Receipt Elimination</span>
+                <strong>100% Digital</strong>
+              </div>
+              <div class="sdg-meter__track">
+                <div class="sdg-meter__fill gs-sdg-meter" style="--target-w: 96%;"></div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Pillar 03 -->
+          <article class="sdg-pillar-card aq-spotlight-card gs-sdg-card">
+            <div class="sdg-pillar-card__top">
+              <span class="sdg-pillar-card__badge">SDG 03 &middot; Wellness</span>
+              <span class="sdg-pillar-card__num">03</span>
+            </div>
+            <h3 class="sdg-pillar-card__title">Good Health &amp; Well-being</h3>
+            <div class="sdg-contrast">
+              <div class="sdg-contrast__row">
+                <span class="sdg-contrast__tag sdg-contrast__tag--old">Legacy Friction</span>
+                <span class="sdg-contrast__val">Stressful rushed breaks, long queues, overcrowded counters, skipped lunches.</span>
+              </div>
+              <div class="sdg-contrast__row">
+                <span class="sdg-contrast__tag sdg-contrast__tag--new">Food-Verse Solution</span>
+                <span class="sdg-contrast__val"><strong>Timely Meal Consistency:</strong> Queue-free scheduled meals keep nutrition reliable and reduce dining congestion.</span>
+              </div>
+            </div>
+            <div class="sdg-meter">
+              <div class="sdg-meter__head">
+                <span>Break-Time Recovery</span>
+                <strong>Up to 78% Faster</strong>
+              </div>
+              <div class="sdg-meter__track">
+                <div class="sdg-meter__fill gs-sdg-meter" style="--target-w: 88%;"></div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. STICKY INDEX RAIL + INTERACTIVE SDG BLUEPRINT DECK -->
+    <section class="sdg-blueprints-wrap" id="sdg-chapters">
+      <div class="container">
+        <div class="section-header gs-sdg-fade" style="margin-bottom:36px;">
+          <div>
+            <span class="eyebrow">Sticky Scroll &amp; Interactive Blueprints</span>
+            <h2 class="section-header__title" data-kinetic-words>Interactive Goal Architecture</h2>
+          </div>
+          <p class="section-header__desc">
+            Click tabs, ASCII diagrams, or operational workflow steps below to inspect every engineering layer behind Food Verse’s SDG integration.
+          </p>
+        </div>
+
+        <div class="aq-deck-layout">
+          <!-- Sticky Left Navigation Rail -->
+          <aside class="aq-deck-rail gs-sdg-fade" aria-label="SDG Chapter Navigator">
+            <div style="display:flex; align-items:center; gap:12px;">
+              <svg class="aq-orbital-spinner" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                <circle cx="24" cy="24" r="20" stroke="#b6cce2" stroke-width="1.5" stroke-dasharray="3 4" />
+                <polygon points="24,6 28,20 42,24 28,28 24,42 20,28 6,24 20,20" stroke="#163a6b" stroke-width="1.3" fill="rgba(82,165,232,0.16)" />
+              </svg>
+              <div>
+                <span class="eyebrow" style="font-size:0.62rem;">Live Scroll Spy</span>
+                <div class="serif-title" style="font-size:1.35rem; margin-top:2px;">3 Aligned Goals</div>
+              </div>
+            </div>
+
+            <nav class="aq-deck-nav">
+              <a href="#sdg-chapter-9" class="aq-deck-link is-active" id="rail-link-9" data-rail-goal="9">
+                <span>Industry &amp; Infrastructure</span>
+                <span class="aq-deck-link__tag">SDG 09</span>
+              </a>
+              <a href="#sdg-chapter-12" class="aq-deck-link" id="rail-link-12" data-rail-goal="12">
+                <span>Consumption &amp; Production</span>
+                <span class="aq-deck-link__tag">SDG 12</span>
+              </a>
+              <a href="#sdg-chapter-3" class="aq-deck-link" id="rail-link-3" data-rail-goal="3">
+                <span>Good Health &amp; Well-being</span>
+                <span class="aq-deck-link__tag">SDG 03</span>
+              </a>
+            </nav>
+
+            <div class="sdg-readout-card" style="padding:14px;">
+              <span class="sdg-readout-card__label">Interactive Tip</span>
+              <p class="sdg-readout-card__text" style="font-size:0.8rem;">
+                Click any numbered step (<strong>01–03</strong>) inside a goal card to highlight its live operational trace.
+              </p>
+            </div>
+          </aside>
+
+          <!-- Right Blueprint Cards Column -->
+          <div>
+            <!-- BLUEPRINT 01: SDG 9 -->
+            <article class="sdg-blueprint aq-spotlight-card gs-blueprint" id="sdg-chapter-9" data-bp-section="9">
+              <div class="sdg-blueprint__head">
+                <div class="story-chapter__title-wrap">
+                  <span class="story-chapter__num">09</span>
+                  <div>
+                    <span class="eyebrow" style="color:#3b82c4;">SDG 9 &middot; Industry, Innovation &amp; Infrastructure</span>
+                    <h3 class="story-chapter__title">Unified Digital <em style="color:#1d4e89;">Infrastructure</em></h3>
+                  </div>
+                </div>
+                <div class="story-chapter__timeline" aria-hidden="true">
+                  <span class="story-chapter__timeline-label">Blueprint 01 / 03</span>
+                  <div class="story-chapter__track">
+                    <div class="story-chapter__progress gs-bp-progress" style="background:#3b82c4;"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="sdg-blueprint__grid">
+                <div class="sdg-blueprint__visual gs-bp-visual">
+                  <div class="sdg-ascii-panel">
+                    <div class="sdg-ascii-panel__stage" id="sdg-ascii-9"></div>
+                  </div>
+
+                  <div class="sdg-tabs" role="tablist" aria-label="SDG 9 Architecture Modes">
+                    <button type="button" class="sdg-tab-btn aq-magnetic is-active" data-bp="9" data-tab-label="Web Portal Architecture" data-tab-text="Both campus kitchens—Cafe by the Valley (78 items) and Atmosphere Cafe (72 items)—share one responsive web backbone with synchronized order state.">System Spine</button>
+                    <button type="button" class="sdg-tab-btn aq-magnetic" data-bp="9" data-tab-label="Admin &amp; Kitchen Control" data-tab-text="Centralized Admin &amp; Restaurant Management Dashboard replaces verbal counter tickets with structured variant, dietary, and pricing metadata.">Admin Dashboard</button>
+                    <button type="button" class="sdg-tab-btn aq-magnetic" data-bp="9" data-tab-label="Real-Time Workflow Sync" data-tab-text="Students place pre-orders from lecture blocks while kitchen queues update live order status across preparation and pickup readiness.">Order Lifecycle</button>
+                  </div>
+
+                  <div class="sdg-readout-card">
+                    <span class="sdg-readout-card__label" id="bp-readout-label-9">Web Portal Architecture</span>
+                    <p class="sdg-readout-card__text" id="bp-readout-text-9">
+                      Both campus kitchens—Cafe by the Valley (78 items) and Atmosphere Cafe (72 items)—share one responsive web backbone with synchronized order state.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="sdg-blueprint__narrative gs-bp-narrative">
+                  <div class="sdg-focus-box">
+                    <span class="sdg-focus-box__label">Official Focus &middot; UN SDG 9</span>
+                    <p class="sdg-focus-box__text">
+                      &ldquo;Build resilient infrastructure, promote inclusive and sustainable industrialization, and foster innovation.&rdquo;
+                    </p>
+                  </div>
+
+                  <p class="story-chapter__lead" style="margin:0 0 8px; max-width:none;">
+                    <strong>How Food-Verse Aligns:</strong> Replaces fragmented, manual counter-based ordering with a unified campus digital platform. Connects all campus restaurants under one web architecture with a centralized Admin &amp; Restaurant Management Dashboard, digital menus, and real-time order status workflows.
+                  </p>
+
+                  <div class="sdg-flow-list">
+                    <div class="sdg-flow-line gs-flow-line"></div>
+                    <div class="sdg-flow-node gs-flow-node is-active" role="button" tabindex="0" data-step-bp="9" data-step-title="01 · Unified Web Backbone" data-step-detail="Unites Central Block (Cafe by the Valley) and Management Block (Atmosphere Cafe) on one shared portal architecture with persistent cart continuity.">
+                      <span class="sdg-flow-node__title">01 &middot; Unified Multi-Outlet Web Architecture</span>
+                      <span class="sdg-flow-node__desc">Connects all campus restaurants under one clean portal with persistent cross-kitchen bag storage.</span>
+                    </div>
+                    <div class="sdg-flow-node gs-flow-node" role="button" tabindex="0" data-step-bp="9" data-step-title="02 · Admin & Kitchen Dashboard" data-step-detail="Standardizes 150 digital menu entries, variants (Regular/Medium/Large), pricing, and hostel drop coordinates in one manageable schema.">
+                      <span class="sdg-flow-node__title">02 &middot; Centralized Admin &amp; Restaurant Dashboard</span>
+                      <span class="sdg-flow-node__desc">Manages digital menus, customization choices, and kitchen dispatch details centrally.</span>
+                    </div>
+                    <div class="sdg-flow-node gs-flow-node" role="button" tabindex="0" data-step-bp="9" data-step-title="03 · Real-Time Order Workflow" data-step-detail="Replaces ad-hoc counter shouting with structured digital order confirmation, live status feedback, and traceable FV-XXXX token codes.">
+                      <span class="sdg-flow-node__title">03 &middot; Real-Time Order Status Workflows</span>
+                      <span class="sdg-flow-node__desc">Structured preparation states move every order cleanly from checkout to counter pickup or delivery.</span>
+                    </div>
+                  </div>
+
+                  <div class="sdg-specs-grid">
+                    <div class="sdg-spec-tile gs-spec-tile">
+                      <span class="story-spec__k">Portal Coverage</span>
+                      <span class="story-spec__v">All Campus Kitchens United</span>
+                    </div>
+                    <div class="sdg-spec-tile gs-spec-tile">
+                      <span class="story-spec__k">Digital Catalog</span>
+                      <span class="story-spec__v">150 Structured Dishes</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- BLUEPRINT 02: SDG 12 -->
+            <article class="sdg-blueprint sdg-blueprint--reverse aq-spotlight-card gs-blueprint" id="sdg-chapter-12" data-bp-section="12">
+              <div class="sdg-blueprint__head">
+                <div class="story-chapter__title-wrap">
+                  <span class="story-chapter__num">12</span>
+                  <div>
+                    <span class="eyebrow" style="color:#3888e8;">SDG 12 &middot; Responsible Consumption &amp; Production</span>
+                    <h3 class="story-chapter__title">Zero-Waste Demand <em style="color:#132a5c;">Visibility</em></h3>
+                  </div>
+                </div>
+                <div class="story-chapter__timeline" aria-hidden="true">
+                  <span class="story-chapter__timeline-label">Blueprint 02 / 03</span>
+                  <div class="story-chapter__track">
+                    <div class="story-chapter__progress gs-bp-progress" style="background:#3888e8;"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="sdg-blueprint__grid">
+                <div class="sdg-blueprint__visual gs-bp-visual">
+                  <div class="sdg-ascii-panel">
+                    <div class="sdg-ascii-panel__stage" id="sdg-ascii-12"></div>
+                  </div>
+
+                  <div class="sdg-tabs" role="tablist" aria-label="SDG 12 Operational Modes">
+                    <button type="button" class="sdg-tab-btn aq-magnetic is-active" data-bp="12" data-tab-label="Scheduled Demand Signals" data-tab-text="Pre-scheduled pickup slots alert kitchens ahead of class breaks so cooks prepare accurate portions rather than guessing.">Slot Forecasting</button>
+                    <button type="button" class="sdg-tab-btn aq-magnetic" data-bp="12" data-tab-label="Food Surplus Prevention" data-tab-text="Clear pre-order visibility curtails blind batch cooking and reduces unsold perishable items at peak closing hours.">Surplus Control</button>
+                    <button type="button" class="sdg-tab-btn aq-magnetic" data-bp="12" data-tab-label="100% Paperless Tokens" data-tab-text="Digital FV-XXXX pickup passes and browser confirmations eliminate hundreds of paper order slips and printed thermal receipts daily.">Zero Paper Slips</button>
+                  </div>
+
+                  <div class="sdg-readout-card">
+                    <span class="sdg-readout-card__label" id="bp-readout-label-12">Scheduled Demand Signals</span>
+                    <p class="sdg-readout-card__text" id="bp-readout-text-12">
+                      Pre-scheduled pickup slots alert kitchens ahead of class breaks so cooks prepare accurate portions rather than guessing.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="sdg-blueprint__narrative gs-bp-narrative">
+                  <div class="sdg-focus-box">
+                    <span class="sdg-focus-box__label">Official Focus &middot; UN SDG 12</span>
+                    <p class="sdg-focus-box__text">
+                      &ldquo;Ensure sustainable consumption and production patterns.&rdquo;
+                    </p>
+                  </div>
+
+                  <p class="story-chapter__lead" style="margin:0 0 8px; max-width:none;">
+                    <strong>How Food-Verse Aligns:</strong> Pre-scheduled pickup time slots and digital pre-ordering give campus kitchens clearer demand visibility, helping reduce over-preparation and food waste. Digital order confirmations and in-app notifications also eliminate paper order slips and receipts.
+                  </p>
+
+                  <div class="sdg-flow-list">
+                    <div class="sdg-flow-line gs-flow-line"></div>
+                    <div class="sdg-flow-node gs-flow-node is-active" role="button" tabindex="0" data-step-bp="12" data-step-title="01 · Pre-Scheduled Pickup Slots" data-step-detail="Digital pre-ordering lets students lock pickup times ahead of rush hours, transforming surprise walk-in surges into predictable demand.">
+                      <span class="sdg-flow-node__title">01 &middot; Advance Break-Slot Pre-Ordering</span>
+                      <span class="sdg-flow-node__desc">Gives campus kitchens early demand visibility before peak lecture breaks arrive.</span>
+                    </div>
+                    <div class="sdg-flow-node gs-flow-node" role="button" tabindex="0" data-step-bp="12" data-step-title="02 · Precision Kitchen Preparation" data-step-detail="Accurate pre-order item counts align raw ingredient prep with real demand, sharply lowering daily food over-preparation and spoilage.">
+                      <span class="sdg-flow-node__title">02 &middot; Demand-Matched Kitchen Preparation</span>
+                      <span class="sdg-flow-node__desc">Reduces over-preparation and end-of-day food waste across both campus outlets.</span>
+                    </div>
+                    <div class="sdg-flow-node gs-flow-node" role="button" tabindex="0" data-step-bp="12" data-step-title="03 · Zero Paper Receipts" data-step-detail="Digital confirmations, saved FV-XXXX passes, and in-app status alerts permanently remove disposable paper slips from every counter handoff.">
+                      <span class="sdg-flow-node__title">03 &middot; Digital Confirmations &amp; Alerts</span>
+                      <span class="sdg-flow-node__desc">Eliminates paper order slips and receipts through instant on-screen verification.</span>
+                    </div>
+                  </div>
+
+                  <div class="sdg-specs-grid">
+                    <div class="sdg-spec-tile gs-spec-tile">
+                      <span class="story-spec__k">Waste Mitigation</span>
+                      <span class="story-spec__v">Demand-Led Prep Cycles</span>
+                    </div>
+                    <div class="sdg-spec-tile gs-spec-tile">
+                      <span class="story-spec__k">Paper Footprint</span>
+                      <span class="story-spec__v">0 Slips Printed</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- BLUEPRINT 03: SDG 3 -->
+            <article class="sdg-blueprint aq-spotlight-card gs-blueprint" id="sdg-chapter-3" data-bp-section="3">
+              <div class="sdg-blueprint__head">
+                <div class="story-chapter__title-wrap">
+                  <span class="story-chapter__num">03</span>
+                  <div>
+                    <span class="eyebrow" style="color:#3b82c4;">SDG 3 &middot; Good Health &amp; Well-being</span>
+                    <h3 class="story-chapter__title">Calm, Timely <em style="color:#1d4e89;">Mealtime Care</em></h3>
+                  </div>
+                </div>
+                <div class="story-chapter__timeline" aria-hidden="true">
+                  <span class="story-chapter__timeline-label">Blueprint 03 / 03</span>
+                  <div class="story-chapter__track">
+                    <div class="story-chapter__progress gs-bp-progress" style="background:#3b82c4;"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="sdg-blueprint__grid">
+                <div class="sdg-blueprint__visual gs-bp-visual">
+                  <div class="sdg-ascii-panel">
+                    <div class="sdg-ascii-panel__stage" id="sdg-ascii-3"></div>
+                  </div>
+
+                  <div class="sdg-tabs" role="tablist" aria-label="SDG 3 Wellness Modes">
+                    <button type="button" class="sdg-tab-btn aq-magnetic is-active" data-bp="3" data-tab-label="No Skipped Meals" data-tab-text="Pre-ordering before breaks lets students eat proper, nutritious meals between classes instead of skipping lunch when counters back up.">Break Protection</button>
+                    <button type="button" class="sdg-tab-btn aq-magnetic" data-bp="3" data-tab-label="De-Congested Dining Areas" data-tab-text="Scheduled collection windows and hostel drops disperse peak crowd density across dining corridors.">Crowd Relief</button>
+                    <button type="button" class="sdg-tab-btn aq-magnetic" data-bp="3" data-tab-label="Transparent Dietary Clarity" data-tab-text="Every item features crisp Veg / Non-Veg badges, add-on transparency, and prep window timing for calm meal planning.">Diet Clarity</button>
+                  </div>
+
+                  <div class="sdg-readout-card">
+                    <span class="sdg-readout-card__label" id="bp-readout-label-3">No Skipped Meals</span>
+                    <p class="sdg-readout-card__text" id="bp-readout-text-3">
+                      Pre-ordering before breaks lets students eat proper, nutritious meals between classes instead of skipping lunch when counters back up.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="sdg-blueprint__narrative gs-bp-narrative">
+                  <div class="sdg-focus-box">
+                    <span class="sdg-focus-box__label">Official Focus &middot; UN SDG 3</span>
+                    <p class="sdg-focus-box__text">
+                      &ldquo;Ensure healthy lives and promote well-being for all at all ages.&rdquo;
+                    </p>
+                  </div>
+
+                  <p class="story-chapter__lead" style="margin:0 0 8px; max-width:none;">
+                    <strong>How Food-Verse Aligns:</strong> Eliminates stressful, rushed lunch breaks and long waiting queues between classes so students and staff can consistently eat nutritious meals on time instead of skipping meals. Reduces physical overcrowding in dining areas during peak hours.
+                  </p>
+
+                  <div class="sdg-flow-list">
+                    <div class="sdg-flow-line gs-flow-line"></div>
+                    <div class="sdg-flow-node gs-flow-node is-active" role="button" tabindex="0" data-step-bp="3" data-step-title="01 · Zero-Stress Break Transitions" data-step-detail="Orders are freshly prepared prior to the class bell so students spend break minutes eating, never waiting 20+ minutes in standing queues.">
+                      <span class="sdg-flow-node__title">01 &middot; Queue-Free Lecture Break Transitions</span>
+                      <span class="sdg-flow-node__desc">Removes waiting bottlenecks between classes so lunch breaks stay calm and unhurried.</span>
+                    </div>
+                    <div class="sdg-flow-node gs-flow-node" role="button" tabindex="0" data-step-bp="3" data-step-title="02 · Consistent Daily Nutrition" data-step-detail="Reliable timing empowers students and faculty to maintain regular, nutritious meals throughout packed academic timetables.">
+                      <span class="sdg-flow-node__title">02 &middot; Consistent Nutritious Meal Schedules</span>
+                      <span class="sdg-flow-node__desc">Prevents skipped meals caused by tight break windows and unpredictable counter wait times.</span>
+                    </div>
+                    <div class="sdg-flow-node gs-flow-node" role="button" tabindex="0" data-step-bp="3" data-step-title="03 · Safer Crowd Density" data-step-detail="Staggered pickup slots and campus drop options noticeably decompress crowded hallways and seating zones during peak hours.">
+                      <span class="sdg-flow-node__title">03 &middot; Reduced Peak-Hour Overcrowding</span>
+                      <span class="sdg-flow-node__desc">Keeps campus dining spaces calmer, cleaner, and physically less congested at lunchtime.</span>
+                    </div>
+                  </div>
+
+                  <div class="sdg-specs-grid">
+                    <div class="sdg-spec-tile gs-spec-tile">
+                      <span class="story-spec__k">Dietary Clarity</span>
+                      <span class="story-spec__v">Verified Veg / Non-Veg Marks</span>
+                    </div>
+                    <div class="sdg-spec-tile gs-spec-tile">
+                      <span class="story-spec__k">Dining Environment</span>
+                      <span class="story-spec__v">Zero Peak Overcrowding</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. LIVE CAMPUS DINING LINKS -->
+    <section class="sdg-simulator-section">
+      <div class="container">
+        <div class="sdg-sim-panel aq-spotlight-card gs-sdg-fade">
+          <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px;">
+            <div>
+              <span class="eyebrow" style="margin-bottom:4px;">Experience the Live Architecture</span>
+              <p style="font-size:0.92rem; color:var(--ink-muted);">Visit either connected campus restaurant to place a pre-scheduled, zero-paper digital order.</p>
+            </div>
+            <div style="display:flex; flex-wrap:wrap; gap:12px;">
+              <a href="restaurants/cafe-by-the-valley.html" class="btn-editorial btn-editorial--pill aq-magnetic">Cafe by the Valley (78 Dishes) &rarr;</a>
+              <a href="restaurants/atmosphere-cafe.html" class="btn-editorial btn-editorial--outline btn-editorial--pill aq-magnetic">Atmosphere Cafe (72 Dishes) &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Shared Footer -->
+  <div id="fv-footer"></div>
+
+  <script src="assets/vendor/gsap.min.js"></script>
+  <script src="assets/vendor/ScrollTrigger.min.js"></script>
+  <script src="assets/js/foodverse-core.js"></script>
+  <script src="assets/js/foodverse-3d.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      FoodVerse.renderSharedChrome('sdg');
+
+      /* --------------------------------------------------------------------
+         1. CUSTOM KINETIC TEXT SPLITTING UTILITIES (SplitText / SplitType Style)
+         -------------------------------------------------------------------- */
+      // Split marked hero line into hover-reactive character spans grouped by word (prevents mid-word wrap)
+      document.querySelectorAll('[data-kinetic-chars]').forEach(function (el) {
+        const words = el.textContent.trim().split(/\s+/);
+        el.textContent = '';
+        words.forEach(function (word, wIdx) {
+          const wordWrap = document.createElement('span');
+          wordWrap.style.display = 'inline-block';
+          wordWrap.style.whiteSpace = 'nowrap';
+          Array.from(word).forEach(function (ch) {
+            const span = document.createElement('span');
+            span.className = 'aq-char';
+            span.textContent = ch;
+            wordWrap.appendChild(span);
+          });
+          el.appendChild(wordWrap);
+          if (wIdx < words.length - 1) {
+            const sp = document.createElement('span');
+            sp.className = 'aq-char aq-char--space';
+            sp.textContent = '\u00A0';
+            el.appendChild(sp);
+          }
+        });
+      });
+
+      // Split section titles into masked kinetic word reveals
+      document.querySelectorAll('[data-kinetic-words]').forEach(function (el) {
+        const words = el.textContent.trim().split(/\s+/);
+        el.textContent = '';
+        words.forEach(function (word, idx) {
+          const outer = document.createElement('span');
+          outer.className = 'aq-line';
+          outer.style.display = 'inline-block';
+          outer.style.marginRight = idx === words.length - 1 ? '0' : '0.24em';
+          outer.style.verticalAlign = 'top';
+          const inner = document.createElement('span');
+          inner.className = 'aq-line__inner gs-word-rise';
+          inner.textContent = word;
+          outer.appendChild(inner);
+          el.appendChild(outer);
+        });
+      });
+
+      // Split manifesto statement into scroll-scrubbed progressive color words
+      const manifestoEl = document.getElementById('aq-scrub-statement');
+      if (manifestoEl) {
+        const accentWords = new Set(['synchronized', 'digital', 'shrinks,', 'vanishes,', 'nourish']);
+        const words = manifestoEl.textContent.trim().split(/\s+/);
+        manifestoEl.textContent = '';
+        words.forEach(function (w) {
+          const span = document.createElement('span');
+          span.className = 'aq-scrub-word' + (accentWords.has(w.toLowerCase()) ? ' aq-scrub-word--accent' : '');
+          span.textContent = w;
+          manifestoEl.appendChild(span);
+        });
+      }
+
+      /* --------------------------------------------------------------------
+         2. FLAT INTERACTIVE CARDS (NO MOUSE FOLLOWER CIRCLE / NO 3D TILT)
+         -------------------------------------------------------------------- */
+      document.querySelectorAll('.aq-spotlight-card').forEach(function (card) {
+        card.addEventListener('pointermove', function (e) {
+          const rect = card.getBoundingClientRect();
+          card.style.setProperty('--mx', (e.clientX - rect.left) + 'px');
+          card.style.setProperty('--my', (e.clientY - rect.top) + 'px');
+        });
+      });
+
+      /* --------------------------------------------------------------------
+         3. ASCII STAGES, ORBITAL PREVIEWS, BLUEPRINT TABS & INTERACTIVE NODES
+         -------------------------------------------------------------------- */
+      const sdgStage = FoodVerse3D.createStage(
+        document.getElementById('sdg-hero-canvas'),
+        'sdg-9',
+        { compact: false }
+      );
+
+      const orbitalText = document.getElementById('aq-orbital-text');
+      document.querySelectorAll('[data-orbital-preview]').forEach(function (pill) {
+        pill.addEventListener('mouseenter', function () {
+          if (orbitalText) orbitalText.textContent = pill.getAttribute('data-orbital-preview');
+        });
+      });
+
+      const switchBtns = document.querySelectorAll('[data-sdg-model]');
+      const captionText = document.getElementById('sdg-caption-text');
+      const captionLink = document.getElementById('sdg-caption-link');
+      switchBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          switchBtns.forEach(function (b) { b.classList.remove('is-active'); });
+          btn.classList.add('is-active');
+          if (sdgStage) sdgStage.loadModel(btn.getAttribute('data-sdg-model'));
+          captionText.innerHTML = btn.getAttribute('data-label');
+          captionLink.setAttribute('href', btn.getAttribute('data-href'));
+          if (orbitalText && btn.getAttribute('data-orbit')) {
+            orbitalText.innerHTML = btn.getAttribute('data-orbit');
+          }
+        });
+      });
+
+      FoodVerse3D.createStage(document.getElementById('sdg-ascii-9'), 'sdg-9', { compact: false });
+      FoodVerse3D.createStage(document.getElementById('sdg-ascii-12'), 'sdg-12', { compact: false });
+      FoodVerse3D.createStage(document.getElementById('sdg-ascii-3'), 'sdg-3', { compact: false });
+
+      // Blueprint View Switcher Tabs
+      document.querySelectorAll('.sdg-tab-btn').forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          const bpId = tab.getAttribute('data-bp');
+          document.querySelectorAll('.sdg-tab-btn[data-bp="' + bpId + '"]').forEach(function (b) {
+            b.classList.remove('is-active');
+          });
+          tab.classList.add('is-active');
+          const lbl = document.getElementById('bp-readout-label-' + bpId);
+          const txt = document.getElementById('bp-readout-text-' + bpId);
+          if (lbl) lbl.innerHTML = tab.getAttribute('data-tab-label');
+          if (txt) {
+            txt.textContent = tab.getAttribute('data-tab-text');
+            if (typeof window.gsap !== 'undefined') {
+              window.gsap.fromTo(txt.parentElement, { y: 6, opacity: 0.65 }, { y: 0, opacity: 1, duration: 0.35, ease: 'power2.out' });
+            }
+          }
+        });
+      });
+
+      // Interactive Clickable Operational Flow Nodes (01 / 02 / 03)
+      document.querySelectorAll('.sdg-flow-node[data-step-bp]').forEach(function (node) {
+        function activateNode() {
+          const bpId = node.getAttribute('data-step-bp');
+          document.querySelectorAll('.sdg-flow-node[data-step-bp="' + bpId + '"]').forEach(function (n) {
+            n.classList.remove('is-active');
+          });
+          node.classList.add('is-active');
+          const lbl = document.getElementById('bp-readout-label-' + bpId);
+          const txt = document.getElementById('bp-readout-text-' + bpId);
+          if (lbl) lbl.textContent = node.getAttribute('data-step-title');
+          if (txt) {
+            txt.textContent = node.getAttribute('data-step-detail');
+            if (typeof window.gsap !== 'undefined') {
+              window.gsap.fromTo(txt.parentElement, { y: 5, opacity: 0.65 }, { y: 0, opacity: 1, duration: 0.3, ease: 'power2.out' });
+            }
+          }
+        }
+        node.addEventListener('click', activateNode);
+        node.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            activateNode();
+          }
+        });
+      });
+
+      /* --------------------------------------------------------------------
+         4. GSAP + SCROLLTRIGGER MOTION CHOREOGRAPHY
+         -------------------------------------------------------------------- */
+      FoodVerse.initScrollAnimations();
+
+      if (typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined') {
+        const gsap = window.gsap;
+        const ScrollTrigger = window.ScrollTrigger;
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero masked line reveal + Scroll-Away Dissolve (disappears smoothly on scroll down, reappears on scroll up)
+        gsap.from('.gs-aq-line', {
+          yPercent: 108,
+          duration: 0.85,
+          stagger: 0.1,
+          ease: 'power3.out',
+          clearProps: 'transform'
+        });
+
+        gsap.to('.sdg-hero .hero-exhibition__copy', {
+          y: -36,
+          opacity: 0.12,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '.sdg-hero',
+            start: 'center top',
+            end: 'bottom top',
+            scrub: 0.35
+          }
+        });
+
+        // Fill hollow stroke title cleanly on scroll past hero top
+        const heroStroke = document.getElementById('aq-hero-stroke');
+        if (heroStroke) {
+          ScrollTrigger.create({
+            trigger: '.sdg-hero',
+            start: 'top+=60 top',
+            onEnter: function () { heroStroke.classList.add('is-filled'); },
+            onLeaveBack: function () { heroStroke.classList.remove('is-filled'); }
+          });
+        }
+
+        // Opposing Velocity-Skew Kinetic Marquees
+        const marqueeTop = document.getElementById('aq-marquee-top');
+        const marqueeBot = document.getElementById('aq-marquee-bottom');
+        if (marqueeTop) {
+          gsap.to(marqueeTop, { xPercent: -50, repeat: -1, duration: 24, ease: 'none' });
+        }
+        if (marqueeBot) {
+          gsap.fromTo(marqueeBot, { xPercent: -50 }, { xPercent: 0, repeat: -1, duration: 28, ease: 'none' });
+        }
+        ScrollTrigger.create({
+          trigger: 'body',
+          start: 'top top',
+          end: 'bottom bottom',
+          onUpdate: function (self) {
+            const skew = Math.max(-6, Math.min(6, self.getVelocity() / 420));
+            gsap.to('.aq-marquee-row', { skewX: skew, duration: 0.25, overwrite: true });
+          }
+        });
+
+        // Scroll-Scrubbed Appearing & Disappearing Manifesto Words (Light & Dark Mode aware)
+        const scrubWords = document.querySelectorAll('.aq-scrub-word');
+        let manifestoTween = null;
+
+        function buildManifestoTween() {
+          if (!scrubWords.length) return;
+          if (manifestoTween) {
+            if (manifestoTween.scrollTrigger) manifestoTween.scrollTrigger.kill();
+            manifestoTween.kill();
+            gsap.set(scrubWords, { clearProps: 'color' });
+          }
+          const isDark = document.documentElement.classList.contains('dark-mode');
+          manifestoTween = gsap.fromTo(
+            scrubWords,
+            {
+              color: isDark ? 'rgba(255, 255, 255, 0.22)' : 'rgba(22, 58, 107, 0.12)',
+              y: 10,
+              opacity: 0.2
+            },
+            {
+              color: isDark ? '#ffffff' : '#0d1b2a',
+              y: 0,
+              opacity: 1,
+              stagger: 0.06,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: '#aq-scrub-statement',
+                start: 'top 90%',
+                end: 'top 46%',
+                scrub: 0.35
+              }
+            }
+          );
+        }
+
+        if (scrubWords.length) {
+          buildManifestoTween();
+          window.addEventListener('fv:themechange', buildManifestoTween);
+
+          // Gentle fade-out as manifesto exits above viewport
+          gsap.fromTo(
+            '#aq-scrub-statement',
+            { opacity: 1, y: 0 },
+            {
+              opacity: 0.15,
+              y: -14,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: '.aq-manifesto-band',
+                start: 'bottom 35%',
+                end: 'bottom top',
+                scrub: 0.35
+              }
+            }
+          );
+        }
+
+        // Bidirectional Appearing / Disappearing Section Headlines
+        document.querySelectorAll('.section-header').forEach(function (hdr) {
+          const words = hdr.querySelectorAll('.gs-word-rise');
+          const desc = hdr.querySelector('.section-header__desc');
+          if (words.length) {
+            gsap.fromTo(
+              words,
+              { yPercent: 110, opacity: 0 },
+              {
+                yPercent: 0,
+                opacity: 1,
+                duration: 0.58,
+                stagger: 0.04,
+                ease: 'power3.out',
+                scrollTrigger: {
+                  trigger: hdr,
+                  start: 'top 90%',
+                  end: 'bottom 8%',
+                  toggleActions: 'play reverse play reverse'
+                }
+              }
+            );
+          }
+          if (desc) {
+            gsap.fromTo(
+              desc,
+              { y: 14, opacity: 0 },
+              {
+                y: 0,
+                opacity: 1,
+                duration: 0.52,
+                ease: 'power2.out',
+                scrollTrigger: {
+                  trigger: hdr,
+                  start: 'top 88%',
+                  end: 'bottom 10%',
+                  toggleActions: 'play reverse play reverse'
+                }
+              }
+            );
+          }
+        });
+
+        // Section fade-ups (bidirectional appear & disappear)
+        document.querySelectorAll('.gs-sdg-fade').forEach(function (el) {
+          gsap.fromTo(
+            el,
+            { y: 20, opacity: 0.15 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.55,
+              ease: 'power2.out',
+              scrollTrigger: {
+                trigger: el,
+                start: 'top 92%',
+                end: 'bottom 6%',
+                toggleActions: 'play reverse play reverse'
+              }
+            }
+          );
+        });
+
+        // Matrix Pillar Cards bidirectional staggered entrance + animated meter bars
+        gsap.fromTo(
+          '.gs-sdg-card',
+          { y: 28, opacity: 0.12 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.55,
+            stagger: 0.1,
+            ease: 'power2.out',
+            clearProps: 'transform',
+            scrollTrigger: {
+              trigger: '.sdg-matrix-grid',
+              start: 'top 90%',
+              end: 'bottom 10%',
+              toggleActions: 'play reverse play reverse'
+            }
+          }
+        );
+
+        document.querySelectorAll('.gs-sdg-meter').forEach(function (bar) {
+          gsap.fromTo(
+            bar,
+            { scaleX: 0 },
+            {
+              scaleX: 1,
+              duration: 0.8,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: bar,
+                start: 'top 94%',
+                end: 'bottom 6%',
+                toggleActions: 'play reverse play reverse'
+              }
+            }
+          );
+        });
+
+        // Rich Disappearing/Appearing Blueprint Section Choreography (Flat, Zero 3D)
+        document.querySelectorAll('.gs-blueprint').forEach(function (bp) {
+          const goalNum = bp.getAttribute('data-bp-section');
+          const numEl = bp.querySelector('.story-chapter__num');
+          const titleEl = bp.querySelector('.story-chapter__title');
+          const progress = bp.querySelector('.gs-bp-progress');
+          const focusBox = bp.querySelector('.sdg-focus-box');
+          const leadEl = bp.querySelector('.story-chapter__lead');
+          const asciiBox = bp.querySelector('.sdg-ascii-panel');
+          const flowLine = bp.querySelector('.gs-flow-line');
+          const flowNodes = bp.querySelectorAll('.gs-flow-node');
+          const specTiles = bp.querySelectorAll('.gs-spec-tile');
+
+          ScrollTrigger.create({
+            trigger: bp,
+            start: 'top 55%',
+            end: 'bottom 42%',
+            onEnter: function () { setActiveRail(goalNum); },
+            onEnterBack: function () { setActiveRail(goalNum); }
+          });
+
+          // Scrubbed horizontal numeral slide across chapter scroll
+          if (numEl) {
+            gsap.fromTo(
+              numEl,
+              { x: -20, opacity: 0.2 },
+              {
+                x: 10,
+                opacity: 1,
+                ease: 'none',
+                scrollTrigger: { trigger: bp, start: 'top 88%', end: 'top 35%', scrub: 0.4 }
+              }
+            );
+          }
+
+          if (titleEl) {
+            gsap.fromTo(
+              titleEl,
+              { y: 18, opacity: 0.1 },
+              {
+                y: 0,
+                opacity: 1,
+                duration: 0.55,
+                ease: 'power2.out',
+                scrollTrigger: {
+                  trigger: bp,
+                  start: 'top 88%',
+                  end: 'bottom 10%',
+                  toggleActions: 'play reverse play reverse'
+                }
+              }
+            );
+          }
+
+          if (asciiBox) {
+            gsap.fromTo(
+              asciiBox,
+              { opacity: 0.25, y: 14 },
+              {
+                opacity: 1,
+                y: 0,
+                duration: 0.5,
+                ease: 'power2.out',
+                scrollTrigger: {
+                  trigger: bp,
+                  start: 'top 86%',
+                  end: 'bottom 10%',
+                  toggleActions: 'play reverse play reverse'
+                }
+              }
+            );
+          }
+
+          if (focusBox) {
+            gsap.fromTo(
+              focusBox,
+              { x: -18, opacity: 0.1 },
+              {
+                x: 0,
+                opacity: 1,
+                duration: 0.5,
+                ease: 'power2.out',
+                scrollTrigger: {
+                  trigger: focusBox,
+                  start: 'top 88%',
+                  end: 'bottom 10%',
+                  toggleActions: 'play reverse play reverse'
+                }
+              }
+            );
+          }
+
+          if (leadEl) {
+            gsap.fromTo(
+              leadEl,
+              { y: 16, opacity: 0.1 },
+              {
+                y: 0,
+                opacity: 1,
+                duration: 0.52,
+                ease: 'power2.out',
+                scrollTrigger: {
+                  trigger: leadEl,
+                  start: 'top 90%',
+                  end: 'bottom 10%',
+                  toggleActions: 'play reverse play reverse'
+                }
+              }
+            );
+          }
+
+          if (flowLine) {
+            gsap.fromTo(
+              flowLine,
+              { scaleY: 0 },
+              {
+                scaleY: 1,
+                duration: 0.7,
+                ease: 'power2.out',
+                scrollTrigger: {
+                  trigger: flowLine,
+                  start: 'top 90%',
+                  end: 'bottom 10%',
+                  toggleActions: 'play reverse play reverse'
+                }
+              }
+            );
+          }
+
+          if (flowNodes.length) {
+            gsap.fromTo(
+              flowNodes,
+              { x: -16, opacity: 0.15 },
+              {
+                x: 0,
+                opacity: 1,
+                duration: 0.45,
+                stagger: 0.1,
+                ease: 'power2.out',
+                clearProps: 'transform',
+                scrollTrigger: {
+                  trigger: bp.querySelector('.sdg-flow-list'),
+                  start: 'top 90%',
+                  end: 'bottom 10%',
+                  toggleActions: 'play reverse play reverse'
+                }
+              }
+            );
+          }
+
+          if (specTiles.length) {
+            gsap.fromTo(
+              specTiles,
+              { y: 14, opacity: 0.15 },
+              {
+                y: 0,
+                opacity: 1,
+                duration: 0.42,
+                stagger: 0.08,
+                ease: 'power2.out',
+                scrollTrigger: {
+                  trigger: bp.querySelector('.sdg-specs-grid'),
+                  start: 'top 92%',
+                  end: 'bottom 8%',
+                  toggleActions: 'play reverse play reverse'
+                }
+              }
+            );
+          }
+
+          if (progress) {
+            gsap.fromTo(
+              progress,
+              { scaleX: 0 },
+              {
+                scaleX: 1,
+                ease: 'none',
+                scrollTrigger: { trigger: bp, start: 'top 88%', end: 'bottom 35%', scrub: 0.3 }
+              }
+            );
+          }
+        });
+
+        function setActiveRail(goalNum) {
+          document.querySelectorAll('.aq-deck-link').forEach(function (link) {
+            link.classList.toggle('is-active', link.getAttribute('data-rail-goal') === goalNum);
+          });
+        }
+      }
+    });
+  </script>
+</body>
+</html>
